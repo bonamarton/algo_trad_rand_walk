@@ -1,3 +1,7 @@
 
  Basic informations:
 
+ EXAMPLE ASSET PRICE
+
+ Data structure:
+  soon ...

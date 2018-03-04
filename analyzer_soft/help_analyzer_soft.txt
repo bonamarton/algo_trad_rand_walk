@@ -1,3 +1,6 @@
 
  Basic informations:
 
+ ANALYZER SOFTWARE:
+ - Algorithmic tradig system
+ - Results and Plots

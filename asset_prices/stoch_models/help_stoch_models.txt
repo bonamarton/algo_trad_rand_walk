@@ -1,3 +1,7 @@
 
  Basic informations:
 
+ STOCHASTIC MODEL ASSET PRICE
+
+ Data structure:
+  soon ...
