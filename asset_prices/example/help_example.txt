@@ -5,3 +5,6 @@
 
  Data structure:
   soon ...
+   find some real dataset ->
+   come up with a easy data structure ->
+   make random datsets
