@@ -3,5 +3,27 @@
 
  REAL ASSET PRICE
 
+ 
+ full_datasets directory is the place for full (date, time candle information) datasets,
+  these files are comma separated files, every line is a candle.
+
+ clean_datasets directory is the place for clean (only open) datasets,
+  these files are comma separated files, every line is a candle.
+
+
  Data structure:
-  soon ...
+  
+  1, full_dataset:
+
+	"date,time,open_price,highest_price,lowest_price,close_price\n"
+
+	file name: ASSETx.txt , where x is timeframe in minutes.
+
+  2, clean_dataset:
+
+	"open_price\n"
+
+	file name: ASSET_xy.txt , where x is timeframe in y (m:minute, h:hour, D:day, W:week, M:month) unite.
+
+
+ data_transform.cpp can use for make clean_dataset from full_dataset.
