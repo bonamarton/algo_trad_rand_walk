@@ -9,7 +9,7 @@
     Input file has a comma separated structure,
     with candle and date informations.
 
-    Output file contains only close prices.
+    Output file contains only open prices.
 
 */
 
@@ -30,13 +30,13 @@ int main()
     string output_name;
     string line;
     vector<string> items;
-    vector<double> close_price;
+    vector<double> open_price;
 
-    cout << "\n Data Maker (from raw txt files) \n";
-    cout << "\n Please type in input file name: ";
+    cout << "\n Data Maker (from raw txt files) \n\n";
+    cout << "\n  Please type in input file name: ";
     cin >> input_name;
 
-    cout << "\n\n Please type in output file name: ";
+    cout << "\n\n  Please type in output file name: ";
     cin >> output_name;
     cout << "\n\n";
 
@@ -49,7 +49,7 @@ int main()
         items = split_string(line, ',');
 
         if(items.size() > 1) {
-                close_price.push_back(atof(items[2].c_str()));
+                open_price.push_back(atof(items[2].c_str()));
         }
     }
 
@@ -58,9 +58,11 @@ int main()
     ofstream output_file(output_name.c_str());
     if(!output_file){ cerr << "\n Could not open output_file!\n"; return -1; }
     ostream_iterator<double> output_iterator(output_file, "\n");
-    copy(close_price.begin(), close_price.end(), output_iterator);
+    copy(open_price.begin(), open_price.end(), output_iterator);
 
     output_file.close();
+
+    cout << "\n  Finished!\n\n";
 
     return 0;
 }
