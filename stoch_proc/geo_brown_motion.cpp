@@ -46,7 +46,7 @@ int main()
 {
     using namespace std;
 
-    const double dt = 1;
+    const double dt = 1.0 / 250.0;
 
     cout << "\n Geometric Brownian Motion \n\n";
     cout << "\n\n  Please type in \"N\", number of data point: ";
@@ -74,17 +74,12 @@ int main()
     vector<double> asset_price;
     asset_price.push_back(s_0);
 
-    double increment_factor = (mu * dt) + (sigma * dB(gen));
+    double const_var = (mu * dt) + 1;
 
     for(int i=1; i<N; ++i){
-        asset_price.push_back((increment_factor + 1) * asset_price.back());
+        asset_price.push_back((const_var + (sigma * dB(gen))) * asset_price[i-1]);
+        //          push_back(((mu * dt) + 1 + (sigma * dB(gen))) * asset_price[i-1])
     }
-
-    for(int i=0; i<N; ++i){
-        cout << "\n " << asset_price[i];
-    }
-
-
 
     return 0;
 }
