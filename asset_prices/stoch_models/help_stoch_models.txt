@@ -3,5 +3,25 @@
 
  STOCHASTIC MODEL ASSET PRICE
 
+
  Data structure:
-  soon ...
+
+   optional: first lines holds the important parameters of the model
+  
+   "asset_price\n"
+
+   file name: asset_xy.txt , where x is timeframe in y (m:minute, h:hour, d:day) unite.
+
+				(+ optional serial and identifiers)
+
+
+
+ geo_brown_motion directory holds geometric Brownian motion simulated asset prices.
+	
+	In every file, first lines holds the important parameters of the model.
+	
+	gbm_const_xxxx files made for parameter value comparison.
+	
+	Important imformations about the model and parameters
+	found in .\stoch_proc\help_stoch_proc.txt
+

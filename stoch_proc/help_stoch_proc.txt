@@ -4,4 +4,40 @@
  STOCHASTIC PROCESS ASSET PRICE MODELS
 
  Models:
-  - soon ...
+
+  1. Standard Brownian Motion:
+
+	
+	
+  
+  2. Geometric Brownian Motion:
+	
+	Source: geo_brown_motion.cpp
+
+    	GBM model stochastic diff. eq.: dS(t) = mu S(t) dt + sigma S(t) dB(t)
+
+                                    	dS(t) = [ (mu * dt) + (sigma * dB(t)) ] * S(t)
+                                    	S(t+dt) = S(t) + dS(t)
+                                    	S(t+dt) = [(mu * dt) + (sigma * dB(t)) + 1] * S(t)
+
+	  Where: + S(t):  asset price
+		 + mu: 	  drift
+		 + sigma: volatility
+		 + B(t):  standard Brownian motion (or Wiener process)
+
+	The program make data files with GBM.
+
+	Program input:
+
+		+ N: 		 number of data point
+		+ t_frame_unit   timeframe unit
+		+ t_frame_factor timeframe factor
+		+ s_0: 		 starting asset price
+		+ mu: 		 drift
+		+ sigma: 	 volatility
+		+ output_name: 	 name of the output file
+
+    	!!! Time unit is one year, dt calculated from this:
+            dt = one day ==> dt = 1 / number_of_days_in_one_year
+	
+

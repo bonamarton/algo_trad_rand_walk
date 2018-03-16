@@ -53,10 +53,10 @@ int main()
     while (cols >> column) { use_cols.push_back(column); }
 
     ifstream input_file(input_name.c_str());
-    if(!input_file){ cerr << "\n Could not open input_file!\n"; return -1; }
+    if(!input_file){ cerr << "\n Could not open input_file!\n"; return 1; }
 
     ofstream output_file(output_name.c_str());
-    if(!output_file){ cerr << "\n Could not open output_file!\n"; return -1; }
+    if(!output_file){ cerr << "\n Could not open output_file!\n"; return 1; }
 
     if(use_cols[0] == -1){
         transform_all_cols(input_file, output_file);
