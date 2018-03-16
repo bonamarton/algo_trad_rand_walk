@@ -12,6 +12,8 @@
 #include <fstream>
 #include <vector>
 #include <random>
+#include <stdlib.h>
+#include <time.h>
 
 int main()
 {
@@ -19,13 +21,12 @@ int main()
 
     double dt = 1;
 
-    random_device rd;
-    mt19937 gen(rd());
+    srand(time(NULL));
+    mt19937 gen(rand());
     normal_distribution<double> norm_dist(0,sqrt(dt));
 
-    for(int i=0; i<10; i++){
-        cout << norm_dist(gen) << "\n";
-    }
+
+
 
     return 0;
 }
