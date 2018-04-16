@@ -10,33 +10,38 @@ set_property(TARGET gbm PROPERTY CXX_STANDARD_REQUIRED ON)
 ######################################################################################
 # MAKE GMB ASSET PRICES FROM CONFIG FILES WITH BUILT EXECUTABLE
 
-set(gbmInPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion_config")
-set(gbmOutPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion")
+set(Want_generate_files FALSE) # TRUE or FALSE
 
-# Find all the input files
-file(GLOB gbmInNames RELATIVE "${gbmInPath}" "${gbmInPath}/*_config.txt")
+if(Want_generate_files)
 
-foreach(gbmIn ${gbmInNames})
+    set(gbmInPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion_config")
+    set(gbmOutPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion")
 
-    # Generate input file name
-    set(gbm_in_file "${gbmInPath}/${gbmIn}")
+    # Find all the input files
+    file(GLOB gbmInNames RELATIVE "${gbmInPath}" "${gbmInPath}/*_config.txt")
 
-    # Generate output file name
-    string(REGEX REPLACE "_config" "" gbmOut "${gbmIn}")
-    set(gbm_out_file "${gbmOutPath}/${gbmOut}")
+    foreach(gbmIn ${gbmInNames})
 
-    # Custom command to do the processing
-    add_custom_command( OUTPUT "${gbm_out_file}"
-                        COMMAND gbm < ${gbm_in_file}
-                        DEPENDS "${gbm_in_file}" gbm
-                        COMMENT "\n\n ........ Process file: ${gbmIn} .......\n"
-                        WORKING_DIRECTORY "${gbmOutPath}")
+        # Generate input file name
+        set(gbm_in_file "${gbmInPath}/${gbmIn}")
 
-    # Collecting outfut files
-    set(gbmOutFiles ${gbmOutFiles} "${gbm_out_file}")
+        # Generate output file name
+        string(REGEX REPLACE "_config" "" gbmOut "${gbmIn}")
+        set(gbm_out_file "${gbmOutPath}/${gbmOut}")
 
-endforeach(gbmIn)
+        # Custom command to do the processing
+        add_custom_command( OUTPUT "${gbm_out_file}"
+                            COMMAND gbm < ${gbm_in_file}
+                            DEPENDS "${gbm_in_file}" gbm
+                            COMMENT "\n\n ........ Process file: ${gbmIn} .......\n"
+                            WORKING_DIRECTORY "${gbmOutPath}")
 
-add_custom_target(gbmDatasets ALL DEPENDS ${gbmOutFiles})
+        # Collecting outfut files
+        set(gbmOutFiles ${gbmOutFiles} "${gbm_out_file}")
 
+    endforeach(gbmIn)
+
+    add_custom_target(gbmDatasets ALL DEPENDS ${gbmOutFiles})
+
+endif(Want_generate_files)
 ####################################################################################
