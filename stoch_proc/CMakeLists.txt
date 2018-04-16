@@ -30,11 +30,11 @@ if(Want_generate_files)
         set(gbm_out_file "${gbmOutPath}/${gbmOut}")
 
         # Custom command to do the processing
-        add_custom_command( OUTPUT "${gbm_out_file}"
+        add_custom_command( OUTPUT ${gbm_out_file}
                             COMMAND gbm < ${gbm_in_file}
-                            DEPENDS "${gbm_in_file}" gbm
+                            DEPENDS ${gbm_in_file} gbm
                             COMMENT "\n\n ........ Process file: ${gbmIn} .......\n"
-                            WORKING_DIRECTORY "${gbmOutPath}")
+                            WORKING_DIRECTORY ${gbmOutPath})
 
         # Collecting outfut files
         set(gbmOutFiles ${gbmOutFiles} "${gbm_out_file}")
