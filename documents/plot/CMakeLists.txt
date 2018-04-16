@@ -12,13 +12,16 @@ set(gbmInFile "${gbmOutPath}/gbm_const_sigma_1m_01.txt")
 #file(GLOB gbmDatasets RELATIVE "${gbmOutPath}" "${gbmOutPath}/*_const_sigma*.txt")
 #configure_file(${gbmScriptPath}/const_sigma.plt ${gbmOutPath}/const_sigma.plt COPYONLY)
 #set(gbmOutFile "${gbmOutPath}/const_sigma.png")
+set(GNUPLOT_EXECUTABLE_PATH "${GNUPLOT_EXECUTABLE}")
+message(" ........... ${GNUPLOT_EXECUTABLE_PATH} .........")
+message(" ........... ${GNUPLOT_EXECUTABLE} .........")
 
 add_custom_command(COMMAND ${GNUPLOT_EXECUTABLE} ${PROJECT_SOURCE_DIR}/GBM_data_plot_script/const_sigma.plt
                    WORKING_DIRECTORY ${gbmOutPath}
                    OUTPUT ${gbmOutPath}/const_sigma.png
                    BYPRODUCTS ${gbmOutPath}/const_sigma.png
                    DEPENDS ${PROJECT_SOURCE_DIR}/GBM_data_plot_script/const_sigma.plt gbmInFile
-                   COMMENT "Generating plot")
+                   COMMENT "...................Generating plot")
 
 add_custom_target(gbm_sigma_plot DEPENDS ${gbmOutPath}/const_sigma.png)
 
