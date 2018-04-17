@@ -35,6 +35,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <random>
 #include <stdlib.h>
 #include <time.h>
@@ -98,7 +99,7 @@ int main()
     const double dt = t_frame_factor * dt_time_unit[t_frame_unit];
 
     // random number generator
-    srand(time(NULL));
+    srand(unsigned int(time(NULL)));
     mt19937 gen(rand());
     normal_distribution<double> dB(0, sqrt(dt)); // (mean, std.dev.)
 

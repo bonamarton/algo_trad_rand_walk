@@ -1,0 +1,6 @@
+# Ignore CMake vuild lib
+**/build
+*.aux
+*.lof
+*.log
+*.toc
