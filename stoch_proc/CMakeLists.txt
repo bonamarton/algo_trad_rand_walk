@@ -10,7 +10,7 @@ set_property(TARGET gbm PROPERTY CXX_STANDARD_REQUIRED ON)
 ######################################################################################
 # MAKE GMB ASSET PRICES FROM CONFIG FILES WITH BUILT EXECUTABLE
 
-set(Want_generate_files FALSE) # TRUE or FALSE
+set(Want_generate_files TRUE) # TRUE or FALSE
 
 if(Want_generate_files)
 
