@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.8.11)
+
+cmake_minimum_required(VERSION 3.11.0)
 
 project(docu LANGUAGES NONE)
 
@@ -14,13 +15,13 @@ set(gbmPlotPath "${PROJECT_SOURCE_DIR}/plot/GBM_data_plot")
 set(sigmaPlotName "const_sigma.png")
 set(sigmaScriptName "const_sigma.plt")
 
-file(GLOB gbmDatasets "${gbmDataPath}" "${gbmDataPath}/*_const_sigma*.txt")
+file(GLOB bmDatasets "${gbmDataPath}" "${gbmDataPath}/*_const_sigma*.txt")
 set(sigma_plot_output "${gbmPlotPath}/${sigmaPlotName}")
 
 add_custom_command( OUTPUT ${sigma_plot_output}
-                    COMMAND ${GNUPLOT_EXECUTABLE} "${gbmScriptPath}/${sigmaScriptName}"
-                    DEPENDS "${gbmScriptPath}/${sigmaScriptName}" gbmDatasets
-                    COMMENT "................................Generating plot"
+                    COMMAND  ${GNUPLOT_EXECUTABLE} "${gbmScriptPath}/${sigmaScriptName}"
+                    DEPENDS "${gbmScriptPath}/${sigmaScriptName}" 
+                    COMMENT "\n ........... Generatin plot ..........\n"
                     WORKING_DIRECTORY ${gbmDataPath})
 
 add_custom_target(gbmSigmaPlot DEPENDS ${sigma_plot_output})
