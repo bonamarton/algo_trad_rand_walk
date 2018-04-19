@@ -41,7 +41,7 @@ if(Want_generate_files)
 
     endforeach(gbmIn)
 
-    add_custom_target(gbmDatasets ALL DEPENDS ${gbmOutFiles})
+    add_custom_target(gbmDatasets DEPENDS ${gbmOutFiles})
 
 endif(Want_generate_files)
 ####################################################################################
