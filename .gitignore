@@ -1,5 +1,7 @@
-# Ignore CMake vuild lib
+# Ignore CMake build lib
 **/build
+
+# Ignore unnecessary UseLatex.cmake "build" files
 *.aux
 *.lof
 *.log

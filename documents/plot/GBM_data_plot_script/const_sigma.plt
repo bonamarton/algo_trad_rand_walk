@@ -1,6 +1,5 @@
-
 set term png size 1200,675
-set out "const_sigma.png"
+set out "../../../documents/plot/GBM_data_plot/const_sigma.png"
 
 set title "Geometric Brownian Motion with constant sigma parameter"
 

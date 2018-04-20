@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.8.11)
+
+cmake_minimum_required(VERSION 3.11.0)
 
 project(docu LANGUAGES NONE)
 
@@ -11,23 +12,19 @@ set(gbmDataPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion"
 set(gbmScriptPath "${PROJECT_SOURCE_DIR}/plot/GBM_data_plot_script")
 set(gbmPlotPath "${PROJECT_SOURCE_DIR}/plot/GBM_data_plot")
 
-file(GLOB gbmDatasets "${gbmDataPath}" "${gbmDataPath}/*_const_sigma*.txt")
-set(gbmOutFile "${gbmDataPath}/const_sigma.png")
+set(sigmaPlotName "const_sigma.png")
+set(sigmaScriptName "const_sigma.plt")
 
-add_custom_command( OUTPUT ${gbmOutFile}
-                    COMMAND ${GNUPLOT_EXECUTABLE} ${gbmScriptPath}/const_sigma.plt
-                    DEPENDS ${gbmScriptPath}/const_sigma.plt
-                    COMMENT "Generating plot"
+file(GLOB bmDatasets "${gbmDataPath}" "${gbmDataPath}/*_const_sigma*.txt")
+set(sigma_plot_output "${gbmPlotPath}/${sigmaPlotName}")
+
+add_custom_command( OUTPUT ${sigma_plot_output}
+                    COMMAND  ${GNUPLOT_EXECUTABLE} "${gbmScriptPath}/${sigmaScriptName}"
+                    DEPENDS "${gbmScriptPath}/${sigmaScriptName}" gbmDatasets
+                    COMMENT "\n ........... Generatin plot ..........\n"
                     WORKING_DIRECTORY ${gbmDataPath})
 
-add_custom_target(gbm_sigma ALL DEPENDS ${gbmOutFile})
-
-set(cmake_src_d "${CMAKE_SOURCE_DIR}")
-add_custom_command( TARGET gbm_sigma
-                    POST_BUILD
-                    COMMAND ${CMAKE_COMMAND}
-                        -Dcmake_src_d=${cmake_src_d}
-                        -P ${CMAKE_SOURCE_DIR}/documents/cmake/move.cmake)
+add_custom_target(gbmSigmaPlot DEPENDS ${sigma_plot_output})
 
 ######################################################################################
 # LATEX
@@ -47,6 +44,6 @@ set(LATEX_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/gbm_doc")
 add_latex_document( ${gbm_doc_tex_path}
                     CONFIGURE ${gbm_doc_tex_path}
                     TARGET_NAME gbm_doc
-                    DEPENDS ${gbm_doc_tex_path} ${gbmOutFile})
+                    DEPENDS ${gbm_doc_tex_path} ${sigma_plot_output})
 
 ######################################################################################

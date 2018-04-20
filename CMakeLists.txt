@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.8.12)
+
+cmake_minimum_required(VERSION 3.11.0)
 
 project(algo_trad_rand_walk)
 
