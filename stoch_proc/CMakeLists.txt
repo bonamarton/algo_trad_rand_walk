@@ -13,8 +13,11 @@ set_property(TARGET gbm PROPERTY CXX_STANDARD_REQUIRED ON)
 
 set(wantGenerateFiles TRUE) # TRUE or FALSE
 
+if(wantGenerateFiles)
+
     set(gbmInPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion_config")
     set(gbmOutPath "${CMAKE_SOURCE_DIR}/asset_prices/stoch_models/geo_brown_motion")
+    set(sigma_plot_output "${CMAKE_SOURCE_DIR}/documents/plot/GBM_data_plot/const_sigma.png")
 
     # Find all the input files
     file(GLOB gbmInNames RELATIVE "${gbmInPath}" "${gbmInPath}/*_config.txt")
@@ -27,19 +30,24 @@ set(wantGenerateFiles TRUE) # TRUE or FALSE
         # Generate output file name
         string(REGEX REPLACE "_config" "" gbmOut "${gbmIn}")
         set(gbm_out_file "${gbmOutPath}/${gbmOut}")
-        #if(wantGenerateFiles)
+        
         # Custom command to do the processing
         add_custom_command( OUTPUT ${gbm_out_file}
                             COMMAND gbm < ${gbm_in_file}
+                            COMMAND ${CMAKE_COMMAND}
+                                -DFile=${sigma_plot_output}
+                                -P ${CMAKE_SOURCE_DIR}/documents/cmake/remove_file.cmake
                             DEPENDS ${gbm_in_file} gbm
                             COMMENT "\n\n ........ Process file: ${gbmIn} .......\n"
                             WORKING_DIRECTORY ${gbmOutPath})
-        #endif(wantGenerateFiles)
-        # Collecting outfut files
+        
+        # Collecting output files
         set(gbmOutFiles ${gbmOutFiles} "${gbm_out_file}")
 
     endforeach(gbmIn)
 
-add_custom_target(gbmDatasets DEPENDS ${gbmOutFiles})
+    add_custom_target(gbmDatasets ALL DEPENDS ${gbmOutFiles})
+
+endif(wantGenerateFiles)
 
 ####################################################################################

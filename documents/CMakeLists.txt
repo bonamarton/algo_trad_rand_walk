@@ -20,7 +20,7 @@ set(sigma_plot_output "${gbmPlotPath}/${sigmaPlotName}")
 
 add_custom_command( OUTPUT ${sigma_plot_output}
                     COMMAND  ${GNUPLOT_EXECUTABLE} "${gbmScriptPath}/${sigmaScriptName}"
-                    DEPENDS "${gbmScriptPath}/${sigmaScriptName}" 
+                    DEPENDS "${gbmScriptPath}/${sigmaScriptName}" gbmDatasets
                     COMMENT "\n ........... Generatin plot ..........\n"
                     WORKING_DIRECTORY ${gbmDataPath})
 
