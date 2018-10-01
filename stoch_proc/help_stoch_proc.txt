@@ -4,13 +4,9 @@
  STOCHASTIC PROCESS ASSET PRICE MODELS
 
  Models:
-
-  1. Standard Brownian Motion:
-
-	
 	
   
-  2. Geometric Brownian Motion:
+  1. Geometric Brownian Motion:
 	
 	Source: geo_brown_motion.cpp
 

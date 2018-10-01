@@ -1,0 +1,12 @@
+
+ Basic informations:
+
+  cmake: 	Used cmake files (for create pdf and file removal)
+
+  gbm_doc: 	geometric Brownian motion documentation
+
+  img:		Images for documentation
+
+  plot:		GBM gnuplot script and plot
+
+  src:		GBM documentation latex source
