@@ -34,6 +34,6 @@ ________________________________________________
 ### Teaser:
 
 Geometric Brownian-motion plot:
-![GBM](../documents/plot/GBM_data_plot/const_sigma.png)
+![GBM](../master/documents/plot/GBM_data_plot/const_sigma.png)
 
-[GBM Documentation (Hungarian)](../documents/gbm_doc/gbm_doc.pdf)
+[GBM Documentation (Hungarian)](../master/documents/gbm_doc/gbm_doc.pdf)
